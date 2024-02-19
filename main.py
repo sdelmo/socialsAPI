@@ -74,3 +74,16 @@ def delete_post(id: int, response: Response):
                             detail=f"post with id: {id} not found")
 
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+@app.put("/posts/{id}")
+def update_post(id: int, post: Post):
+    print(post)
+
+    try:
+        found, i = find_post(id)
+        my_posts[i] = post.model_dump()
+    except:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"post with id: {id} not found")
+    return {'message': f"updated post with  id: {id} to {my_posts[i]}"}
