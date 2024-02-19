@@ -86,4 +86,4 @@ def update_post(id: int, post: Post):
     except:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id: {id} not found")
-    return {'message': f"updated post with  id: {id} to {my_posts[i]}"}
+    return {"data" : my_posts[i]}
